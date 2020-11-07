@@ -70,17 +70,19 @@ public class TemperatureSeriesAnalysis {
     public double findTempClosestToZero() {
         return findTempClosestToValue(0);
     }
-
+    
     public double findTempClosestToValue(double tempValue) {
         if (temperatures.empty()){
             throw new IllegalArgumentException("Temperature series is empty");
         }
         double currentTemp = temperatures.getTemperature(0);
         for(int i=1; i<temperatures.getSize(); i++){
-            if (abs(currentTemp-tempValue) > abs(temperatures.getTemperature(i)-tempValue)){
+            double curDifference = abs(currentTemp-tempValue);
+            double newDifference = abs(temperatures.getTemperature(i)-tempValue);
+            if (abs(curDifference - newDifference) < 0.00001){
+                currentTemp = Math.max(temperatures.getTemperature(i), tempValue);
+            }else if (curDifference > newDifference){
                 currentTemp = temperatures.getTemperature(i);
-            }else if(abs(currentTemp-tempValue) == abs(temperatures.getTemperature(i)-tempValue)){
-                    currentTemp = Math.max(temperatures.getTemperature(i), tempValue);
             }
         }
         return currentTemp;
