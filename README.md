@@ -40,3 +40,12 @@ dependency:
             <scope>test</scope>
         </dependency>
 ````
+В зв'язку з цими змінами при виконанні тестів, в яких очікується
+помилка заголовок тесту виглядає натупним чином:
+````
+@Test(expectedExceptions = IllegalArgumentException.class)
+````
+замість:
+````
+@Test(expected = IllegalArgumentException.class)
+````

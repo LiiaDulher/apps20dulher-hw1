@@ -1,19 +1,21 @@
 package ua.edu.ucu.tempseries;
 
 import java.lang.IllegalArgumentException;
+import java.util.InputMismatchException;
 
 import static java.lang.Math.*;
 
 public class TemperatureSeriesAnalysis {
 
     private TemperatureSeries temperatures;
+    private final int minTemperature=-273;
 
     public TemperatureSeriesAnalysis() {
-        temperatures = new TemperatureSeries(-273);
+        temperatures = new TemperatureSeries(minTemperature);
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        temperatures = new TemperatureSeries(temperatureSeries, -273);
+        temperatures = new TemperatureSeries(temperatureSeries, minTemperature);
     }
 
     public double average() {
@@ -88,24 +90,19 @@ public class TemperatureSeriesAnalysis {
         return currentTemp;
     }
 
-    private double[] sortTempsByValue(double tempValue, int result){
+    private double[] sortTempsByValue(double tempValue, int expected){
         if (temperatures.empty()){
             throw new IllegalArgumentException("Temperature series is empty");
         }
-        TemperatureSeries lessTemps = new TemperatureSeries(-273);
-        TemperatureSeries greaterTemps = new TemperatureSeries(-273);
+        TemperatureSeries valueTemps = new TemperatureSeries(-273);
         for (int i=0; i<temperatures.getSize(); i++){
-            if (abs(temperatures.getTemperature(i)-tempValue) < 0.00001 || temperatures.getTemperature(i) > tempValue){
-                greaterTemps.add(temperatures.getTemperature(i));
-            }else{
-                lessTemps.add(temperatures.getTemperature(i));
+            if (abs(temperatures.getTemperature(i)-tempValue) < 0.00001 && expected==-1){
+                valueTemps.add(temperatures.getTemperature(i));
+            }else if (compare(temperatures.getTemperature(i), tempValue) == expected){
+                valueTemps.add(temperatures.getTemperature(i));
             }
         }
-        if (result > 0){
-            return lessTemps.getTemperatures();
-        }else{
-            return greaterTemps.getTemperatures();
-        }
+        return valueTemps.getTemperatures();
     }
 
     public double[] findTempsLessThen(double tempValue) {
@@ -123,10 +120,12 @@ public class TemperatureSeriesAnalysis {
         return new TempSummaryStatistics(this);
     }
 
-    // TODO: check
     public int addTemps(double... temps) {
         for (int i=0; i<temps.length; i++){
-            temperatures.add(temps[i]);
+            try{
+                temperatures.add(temps[i]);
+            }catch(InputMismatchException e){
+            }
         }
         return temperatures.getSize();
     }
