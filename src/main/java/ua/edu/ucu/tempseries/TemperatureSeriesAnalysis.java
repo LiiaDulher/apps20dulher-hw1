@@ -95,7 +95,7 @@ public class TemperatureSeriesAnalysis {
         TemperatureSeries lessTemps = new TemperatureSeries(-273);
         TemperatureSeries greaterTemps = new TemperatureSeries(-273);
         for (int i=0; i<temperatures.getSize(); i++){
-            if (abs(temperatures.getTemperature(i)-tempValue) < 0.00001 && temperatures.getTemperature(i) > tempValue){
+            if (abs(temperatures.getTemperature(i)-tempValue) < 0.00001 || temperatures.getTemperature(i) > tempValue){
                 greaterTemps.add(temperatures.getTemperature(i));
             }else{
                 lessTemps.add(temperatures.getTemperature(i));
