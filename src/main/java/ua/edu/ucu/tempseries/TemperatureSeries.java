@@ -3,7 +3,7 @@ package ua.edu.ucu.tempseries;
 import  java.util.InputMismatchException;
 
 public class TemperatureSeries {
-    private double[] temperatures=null;
+    private double[] temperatures={};
     private int minTemp;
     private int buffer=0;
     private int size=0;
@@ -25,7 +25,7 @@ public class TemperatureSeries {
     }
 
     public boolean empty(){
-        return temperatures==null;
+        return buffer==0;
     }
 
     public void add(double x){
