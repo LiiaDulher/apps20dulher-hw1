@@ -399,10 +399,10 @@ public class TemperatureSeriesAnalysisTest {
 
         TempSummaryStatistics actualResult = seriesAnalysis.summaryStatistics();
 
-        assertEquals(expAvgTemp, actualResult.avgTemp, 0.00001);
-        assertEquals(expDevTemp, actualResult.devTemp, 0.00001);
-        assertEquals(expMinTemp, actualResult.minTemp, 0.00001);
-        assertEquals(expMaxTemp, actualResult.maxTemp, 0.00001);
+        assertEquals(expAvgTemp, actualResult.getAvgTemp(), 0.00001);
+        assertEquals(expDevTemp, actualResult.getDevTemp(), 0.00001);
+        assertEquals(expMinTemp, actualResult.getMinTemp(), 0.00001);
+        assertEquals(expMaxTemp, actualResult.getMaxTemp(), 0.00001);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
@@ -424,10 +424,10 @@ public class TemperatureSeriesAnalysisTest {
 
         TempSummaryStatistics actualResult = seriesAnalysis.summaryStatistics();
 
-        assertEquals(expAvgTemp, actualResult.avgTemp, 0.00001);
-        assertEquals(expDevTemp, actualResult.devTemp, 0.00001);
-        assertEquals(expMinTemp, actualResult.minTemp, 0.00001);
-        assertEquals(expMaxTemp, actualResult.maxTemp, 0.00001);
+        assertEquals(expAvgTemp, actualResult.getAvgTemp(), 0.00001);
+        assertEquals(expDevTemp, actualResult.getDevTemp(), 0.00001);
+        assertEquals(expMinTemp, actualResult.getMinTemp(), 0.00001);
+        assertEquals(expMaxTemp, actualResult.getMaxTemp(), 0.00001);
     }
 
     @Test
@@ -442,10 +442,10 @@ public class TemperatureSeriesAnalysisTest {
         TempSummaryStatistics actualResult = seriesAnalysis.summaryStatistics();
 
 
-        assertEquals(expAvgTemp, actualResult.avgTemp, 0.00001);
-        assertEquals(expDevTemp, actualResult.devTemp, 0.00001);
-        assertEquals(expMinTemp, actualResult.minTemp, 0.00001);
-        assertEquals(expMaxTemp, actualResult.maxTemp, 0.00001);
+        assertEquals(expAvgTemp, actualResult.getAvgTemp(), 0.00001);
+        assertEquals(expDevTemp, actualResult.getDevTemp(), 0.00001);
+        assertEquals(expMinTemp, actualResult.getMinTemp(), 0.00001);
+        assertEquals(expMaxTemp, actualResult.getMaxTemp(), 0.00001);
     }
 
     // testing addTemps()
