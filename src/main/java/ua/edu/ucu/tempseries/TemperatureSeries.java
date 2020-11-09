@@ -44,9 +44,9 @@ public class TemperatureSeries {
                     temperatures[i] = temps[i];
                 }
             }
-            temperatures[size] = x;
-            size ++;
         }
+        temperatures[size] = x;
+        size ++;
     }
 
     public int getSize() {

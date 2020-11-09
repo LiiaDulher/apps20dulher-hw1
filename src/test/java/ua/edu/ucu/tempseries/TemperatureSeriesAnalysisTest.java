@@ -90,7 +90,7 @@ public class TemperatureSeriesAnalysisTest {
 
     @Test
     public void testDeviation() {
-        double[] temperatureSeries = {3.0, -5.0, 3.0, -5.0};
+        double[] temperatureSeries = {-3.0, 5.0, -3.0, 5.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double expResult = 4.0;
 
@@ -415,12 +415,12 @@ public class TemperatureSeriesAnalysisTest {
 
     @Test
     public void testSummaryStatistics() {
-        double[] temperatureSeries = {3.0, -5.0, 3.0, -5.0};
+        double[] temperatureSeries = {-3.0, 5.0, -3.0, 5.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double expAvgTemp = 1.0;
         double expDevTemp = 4.0;
-        double expMinTemp = -5.0;
-        double expMaxTemp = 3.0;
+        double expMinTemp = -3.0;
+        double expMaxTemp = 5.0;
 
         TempSummaryStatistics actualResult = seriesAnalysis.summaryStatistics();
 

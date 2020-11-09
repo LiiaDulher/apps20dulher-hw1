@@ -23,7 +23,7 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException("Temperature series is empty");
         }
         double averageTemp = 0;
-        for (int i=1; i < temperatures.getSize(); i++){
+        for (int i=0; i < temperatures.getSize(); i++){
             averageTemp += temperatures.getTemperature(i);
         }
         return averageTemp/temperatures.getSize();
@@ -32,7 +32,7 @@ public class TemperatureSeriesAnalysis {
     public double deviation() {
         double averageTemp = average();
         double tempDeviation = 0;
-        for (int i=1; i < temperatures.getSize(); i++){
+        for (int i=0; i < temperatures.getSize(); i++){
             tempDeviation += pow(temperatures.getTemperature(i)-averageTemp, 2);
         }
         return sqrt(tempDeviation/temperatures.getSize());
@@ -82,7 +82,7 @@ public class TemperatureSeriesAnalysis {
             double curDifference = abs(currentTemp-tempValue);
             double newDifference = abs(temperatures.getTemperature(i)-tempValue);
             if (abs(curDifference - newDifference) < 0.00001){
-                currentTemp = Math.max(temperatures.getTemperature(i), tempValue);
+                currentTemp = Math.max(temperatures.getTemperature(i), currentTemp);
             }else if (curDifference > newDifference){
                 currentTemp = temperatures.getTemperature(i);
             }
