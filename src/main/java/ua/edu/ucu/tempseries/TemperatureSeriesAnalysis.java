@@ -17,11 +17,11 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double average() {
-        if (temperatures.empty()){
+        if (temperatures.empty()) {
             throw new IllegalArgumentException("Temperature series is empty");
         }
         double averageTemp = 0;
-        for (int i=0; i < temperatures.getSize(); i++) {
+        for (int i = 0; i < temperatures.getSize(); i++) {
             averageTemp += temperatures.getTemperature(i);
         }
         return averageTemp/temperatures.getSize();
@@ -30,9 +30,9 @@ public class TemperatureSeriesAnalysis {
     public double deviation() {
         double averageTemp = average();
         double tempDeviation = 0;
-        for (int i=0; i < temperatures.getSize(); i++){
-            double curTempDiff = temperatures.getTemperature(i)-averageTemp;
-            tempDeviation += curTempDiff*curTempDiff;
+        for (int i = 0; i < temperatures.getSize(); i++){
+            double curTempDiff = temperatures.getTemperature(i) - averageTemp;
+            tempDeviation += curTempDiff * curTempDiff;
         }
         return Math.sqrt(tempDeviation/temperatures.getSize());
     }
@@ -42,9 +42,9 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException("Temperature series is empty");
         }
         double temperature = temperatures.getTemperature(0);
-        for (int i=1; i < temperatures.getSize(); i++) {
+        for (int i = 1; i < temperatures.getSize(); i++) {
             if (compare(temperatures.getTemperature(i), temperature)
-                    == expected){
+                    == expected) {
                 temperature = temperatures.getTemperature(i);
             }
         }
@@ -52,11 +52,11 @@ public class TemperatureSeriesAnalysis {
     }
 
     private int compare(double x, double y) {
-        if (x < y){
+        if (x < y) {
             return 1;
-        }else if (x >y){
+        } else if (x >y) {
             return -1;
-        }else{
+        } else {
             return 0;
         }
     }
@@ -74,16 +74,17 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToValue(double tempValue) {
-        if (temperatures.empty()){
+        if (temperatures.empty()) {
             throw new IllegalArgumentException("Temperature series is empty");
         }
         double currTemp = temperatures.getTemperature(0);
-        for(int i=1; i<temperatures.getSize(); i++) {
-            double curDiff = Math.abs(currTemp-tempValue);
-            double newDiff = Math.abs(temperatures.getTemperature(i)-tempValue);
+        for (int i = 1; i<temperatures.getSize(); i++) {
+            double curDiff = Math.abs(currTemp - tempValue);
+            double newDiff = Math.abs(temperatures.getTemperature(i) -
+                    tempValue);
             if (Math.abs(curDiff - newDiff) < delta){
                 currTemp = Math.max(temperatures.getTemperature(i), currTemp);
-            }else if (curDiff > newDiff){
+            } else if (curDiff > newDiff) {
                 currTemp = temperatures.getTemperature(i);
             }
         }
@@ -91,16 +92,16 @@ public class TemperatureSeriesAnalysis {
     }
 
     private double[] sortTempsByValue(double tempValue, int expected) {
-        if (temperatures.empty()){
+        if (temperatures.empty()) {
             throw new IllegalArgumentException("Temperature series is empty");
         }
         TemperatureSeries valueTemps = new TemperatureSeries(minTemperature);
-        for (int i=0; i<temperatures.getSize(); i++) {
+        for (int i = 0; i<temperatures.getSize(); i++) {
             if (Math.abs(temperatures.getTemperature(i)-tempValue) < delta
-                    && expected==-1){
+                    && expected==-1) {
                 valueTemps.add(temperatures.getTemperature(i));
-            }else if (compare(temperatures.getTemperature(i), tempValue)
-                    == expected){
+            } else if (compare(temperatures.getTemperature(i), tempValue)
+                    == expected) {
                 valueTemps.add(temperatures.getTemperature(i));
             }
         }
@@ -116,14 +117,14 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() {
-        if (temperatures.empty()){
+        if (temperatures.empty()) {
             throw new IllegalArgumentException("Temperature series is empty");
         }
         return new TempSummaryStatistics(this);
     }
 
     public int addTemps(double... temps) {
-        for (int i=0; i<temps.length; i++) {
+        for (int i = 0; i < temps.length; i++) {
             try{
                 temperatures.add(temps[i]);
             }catch(InputMismatchException ignored) {}
