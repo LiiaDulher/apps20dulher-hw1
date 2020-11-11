@@ -1,6 +1,5 @@
 package ua.edu.ucu.tempseries;
 
-import java.lang.IllegalArgumentException;
 import java.util.InputMismatchException;
 
 import static java.lang.Math.*;
