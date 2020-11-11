@@ -31,8 +31,8 @@ public class TemperatureSeriesAnalysis {
         double averageTemp = average();
         double tempDeviation = 0;
         for (int i=0; i < temperatures.getSize(); i++){
-            double curTempDifference = temperatures.getTemperature(i)-averageTemp;
-            tempDeviation += curTempDifference*curTempDifference;
+            double curTempDiff = temperatures.getTemperature(i)-averageTemp;
+            tempDeviation += curTempDiff*curTempDiff;
         }
         return Math.sqrt(tempDeviation/temperatures.getSize());
     }
@@ -43,7 +43,8 @@ public class TemperatureSeriesAnalysis {
         }
         double temperature = temperatures.getTemperature(0);
         for (int i=1; i < temperatures.getSize(); i++) {
-            if (compare(temperatures.getTemperature(i), temperature) == expected){
+            if (compare(temperatures.getTemperature(i), temperature)
+                    == expected){
                 temperature = temperatures.getTemperature(i);
             }
         }
@@ -78,11 +79,11 @@ public class TemperatureSeriesAnalysis {
         }
         double currentTemp = temperatures.getTemperature(0);
         for(int i=1; i<temperatures.getSize(); i++) {
-            double curDifference = Math.abs(currentTemp-tempValue);
-            double newDifference = Math.abs(temperatures.getTemperature(i)-tempValue);
-            if (Math.abs(curDifference - newDifference) < delta){
+            double curDiff = Math.abs(currentTemp-tempValue);
+            double newDiff = Math.abs(temperatures.getTemperature(i)-tempValue);
+            if (Math.abs(curDiff - newDiff) < delta){
                 currentTemp = Math.max(temperatures.getTemperature(i), currentTemp);
-            }else if (curDifference > newDifference){
+            }else if (curDiff > newDiff){
                 currentTemp = temperatures.getTemperature(i);
             }
         }
@@ -95,9 +96,11 @@ public class TemperatureSeriesAnalysis {
         }
         TemperatureSeries valueTemps = new TemperatureSeries(minTemperature);
         for (int i=0; i<temperatures.getSize(); i++) {
-            if (Math.abs(temperatures.getTemperature(i)-tempValue) < delta && expected==-1){
+            if (Math.abs(temperatures.getTemperature(i)-tempValue) < delta
+                    && expected==-1){
                 valueTemps.add(temperatures.getTemperature(i));
-            }else if (compare(temperatures.getTemperature(i), tempValue) == expected){
+            }else if (compare(temperatures.getTemperature(i), tempValue)
+                    == expected){
                 valueTemps.add(temperatures.getTemperature(i));
             }
         }
