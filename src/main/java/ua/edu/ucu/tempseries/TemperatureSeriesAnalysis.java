@@ -5,15 +5,15 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
 
     private TemperatureSeries temperatures;
-    private final static int minTemperature = -273;
-    private final static double delta = 0.00001;
+    private static final int MIN_TEMPERATURE = -273;
+    private static final double DELTA = 0.00001;
 
     public TemperatureSeriesAnalysis() {
-        temperatures = new TemperatureSeries(minTemperature);
+        temperatures = new TemperatureSeries(MIN_TEMPERATURE);
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        temperatures = new TemperatureSeries(temperatureSeries, minTemperature);
+        temperatures = new TemperatureSeries(temperatureSeries, MIN_TEMPERATURE);
     }
 
     public double average() {
@@ -82,7 +82,7 @@ public class TemperatureSeriesAnalysis {
             double curDiff = Math.abs(currTemp - tempValue);
             double newDiff = Math.abs(temperatures.getTemperature(i)
                     - tempValue);
-            if (Math.abs(curDiff - newDiff) < delta) {
+            if (Math.abs(curDiff - newDiff) < DELTA) {
                 currTemp = Math.max(temperatures.getTemperature(i), currTemp);
             } else if (curDiff > newDiff) {
                 currTemp = temperatures.getTemperature(i);
@@ -95,9 +95,9 @@ public class TemperatureSeriesAnalysis {
         if (temperatures.empty()) {
             throw new IllegalArgumentException("Temperature series is empty");
         }
-        TemperatureSeries valueTemps = new TemperatureSeries(minTemperature);
+        TemperatureSeries valueTemps = new TemperatureSeries(MIN_TEMPERATURE);
         for (int i = 0; i < temperatures.getSize(); i++) {
-            if (Math.abs(temperatures.getTemperature(i)-tempValue) < delta
+            if (Math.abs(temperatures.getTemperature(i)-tempValue) < DELTA
                     && expected == -1) {
                 valueTemps.add(temperatures.getTemperature(i));
             } else if (compare(temperatures.getTemperature(i), tempValue)
