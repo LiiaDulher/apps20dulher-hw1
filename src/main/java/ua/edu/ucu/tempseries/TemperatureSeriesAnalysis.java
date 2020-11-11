@@ -4,16 +4,17 @@ import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
 
-    private TemperatureSeries temperatures;
     private static final int MIN_TEMPERATURE = -273;
     private static final double DELTA = 0.00001;
+    private TemperatureSeries temperatures;
 
     public TemperatureSeriesAnalysis() {
         temperatures = new TemperatureSeries(MIN_TEMPERATURE);
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        temperatures = new TemperatureSeries(temperatureSeries, MIN_TEMPERATURE);
+        temperatures = new TemperatureSeries(temperatureSeries,
+                MIN_TEMPERATURE);
     }
 
     public double average() {
