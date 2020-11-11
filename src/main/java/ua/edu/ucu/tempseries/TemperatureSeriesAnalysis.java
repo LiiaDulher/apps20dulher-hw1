@@ -5,7 +5,8 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
 
     private TemperatureSeries temperatures;
-    private final int minTemperature=-273;
+    private final int minTemperature = -273;
+    private final double delta = 0.00001;
 
     public TemperatureSeriesAnalysis() {
         temperatures = new TemperatureSeries(minTemperature);
@@ -78,7 +79,7 @@ public class TemperatureSeriesAnalysis {
         for(int i=1; i<temperatures.getSize(); i++) {
             double curDifference = Math.abs(currentTemp-tempValue);
             double newDifference = Math.abs(temperatures.getTemperature(i)-tempValue);
-            if (Math.abs(curDifference - newDifference) < 0.00001){
+            if (Math.abs(curDifference - newDifference) < delta){
                 currentTemp = Math.max(temperatures.getTemperature(i), currentTemp);
             }else if (curDifference > newDifference){
                 currentTemp = temperatures.getTemperature(i);
@@ -91,9 +92,9 @@ public class TemperatureSeriesAnalysis {
         if (temperatures.empty()){
             throw new IllegalArgumentException("Temperature series is empty");
         }
-        TemperatureSeries valueTemps = new TemperatureSeries(-273);
+        TemperatureSeries valueTemps = new TemperatureSeries(minTemperature);
         for (int i=0; i<temperatures.getSize(); i++) {
-            if (Math.abs(temperatures.getTemperature(i)-tempValue) < 0.00001 && expected==-1){
+            if (Math.abs(temperatures.getTemperature(i)-tempValue) < delta && expected==-1){
                 valueTemps.add(temperatures.getTemperature(i));
             }else if (compare(temperatures.getTemperature(i), tempValue) == expected){
                 valueTemps.add(temperatures.getTemperature(i));
