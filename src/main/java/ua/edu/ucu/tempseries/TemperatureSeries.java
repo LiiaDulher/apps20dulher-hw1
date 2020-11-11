@@ -21,7 +21,7 @@ public class TemperatureSeries {
             }
         }
         size = temperatureSeries.length;
-        temperatures = temperatureSeries;
+        temperatures = temperatureSeries.clone();
         buffer = size;
     }
 
@@ -60,6 +60,6 @@ public class TemperatureSeries {
     }
 
     public double[] getTemperatures() {
-        return temperatures;
+        return temperatures.clone();
     }
 }

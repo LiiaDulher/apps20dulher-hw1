@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
 
     private TemperatureSeries temperatures;
-    private final int minTemperature = -273;
-    private final double delta = 0.00001;
+    private final static int minTemperature = -273;
+    private final static double delta = 0.00001;
 
     public TemperatureSeriesAnalysis() {
         temperatures = new TemperatureSeries(minTemperature);
