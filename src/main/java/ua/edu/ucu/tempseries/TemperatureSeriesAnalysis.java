@@ -2,8 +2,6 @@ package ua.edu.ucu.tempseries;
 
 import java.util.InputMismatchException;
 
-import static java.lang.Math.*;
-
 public class TemperatureSeriesAnalysis {
 
     private TemperatureSeries temperatures;
@@ -32,9 +30,9 @@ public class TemperatureSeriesAnalysis {
         double averageTemp = average();
         double tempDeviation = 0;
         for (int i=0; i < temperatures.getSize(); i++){
-            tempDeviation += pow(temperatures.getTemperature(i)-averageTemp, 2);
+            tempDeviation += Math.pow(temperatures.getTemperature(i)-averageTemp, 2);
         }
-        return sqrt(tempDeviation/temperatures.getSize());
+        return Math.sqrt(tempDeviation/temperatures.getSize());
     }
 
     private double expected(int expected) {
@@ -78,9 +76,9 @@ public class TemperatureSeriesAnalysis {
         }
         double currentTemp = temperatures.getTemperature(0);
         for(int i=1; i<temperatures.getSize(); i++) {
-            double curDifference = abs(currentTemp-tempValue);
-            double newDifference = abs(temperatures.getTemperature(i)-tempValue);
-            if (abs(curDifference - newDifference) < 0.00001){
+            double curDifference = Math.abs(currentTemp-tempValue);
+            double newDifference = Math.abs(temperatures.getTemperature(i)-tempValue);
+            if (Math.abs(curDifference - newDifference) < 0.00001){
                 currentTemp = Math.max(temperatures.getTemperature(i), currentTemp);
             }else if (curDifference > newDifference){
                 currentTemp = temperatures.getTemperature(i);
@@ -95,7 +93,7 @@ public class TemperatureSeriesAnalysis {
         }
         TemperatureSeries valueTemps = new TemperatureSeries(-273);
         for (int i=0; i<temperatures.getSize(); i++) {
-            if (abs(temperatures.getTemperature(i)-tempValue) < 0.00001 && expected==-1){
+            if (Math.abs(temperatures.getTemperature(i)-tempValue) < 0.00001 && expected==-1){
                 valueTemps.add(temperatures.getTemperature(i));
             }else if (compare(temperatures.getTemperature(i), tempValue) == expected){
                 valueTemps.add(temperatures.getTemperature(i));
