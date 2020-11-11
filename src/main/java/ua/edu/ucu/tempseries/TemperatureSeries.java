@@ -16,7 +16,8 @@ public class TemperatureSeries {
         minTemp = minimal;
         for (int i=0; i<temperatureSeries.length; i++){
             if (temperatureSeries[i] < minTemp){
-                throw new InputMismatchException("Temperature cannot be less then -273.");
+                throw new InputMismatchException
+                        ("Temperature cannot be less then -273.");
             }
         }
         size = temperatureSeries.length;
@@ -30,7 +31,8 @@ public class TemperatureSeries {
 
     public void add(double x) {
         if (x < minTemp){
-            throw new InputMismatchException("Temperature cannot be less then -273.");
+            throw new InputMismatchException
+                    ("Temperature cannot be less then -273.");
         }
         if (empty()){
             buffer = 1;

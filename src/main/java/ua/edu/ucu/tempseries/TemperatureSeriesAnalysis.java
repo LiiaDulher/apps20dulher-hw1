@@ -77,17 +77,17 @@ public class TemperatureSeriesAnalysis {
         if (temperatures.empty()){
             throw new IllegalArgumentException("Temperature series is empty");
         }
-        double currentTemp = temperatures.getTemperature(0);
+        double currTemp = temperatures.getTemperature(0);
         for(int i=1; i<temperatures.getSize(); i++) {
-            double curDiff = Math.abs(currentTemp-tempValue);
+            double curDiff = Math.abs(currTemp-tempValue);
             double newDiff = Math.abs(temperatures.getTemperature(i)-tempValue);
             if (Math.abs(curDiff - newDiff) < delta){
-                currentTemp = Math.max(temperatures.getTemperature(i), currentTemp);
+                currTemp = Math.max(temperatures.getTemperature(i), currTemp);
             }else if (curDiff > newDiff){
-                currentTemp = temperatures.getTemperature(i);
+                currTemp = temperatures.getTemperature(i);
             }
         }
-        return currentTemp;
+        return currTemp;
     }
 
     private double[] sortTempsByValue(double tempValue, int expected) {
