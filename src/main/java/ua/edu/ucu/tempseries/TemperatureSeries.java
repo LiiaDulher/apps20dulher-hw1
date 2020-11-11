@@ -14,7 +14,7 @@ public class TemperatureSeries {
 
     public TemperatureSeries(double[] temperatureSeries, int minimal) {
         minTemp = minimal;
-        for (int i = 0; i < temperatureSeries.length; i++){
+        for (int i = 0; i < temperatureSeries.length; i++) {
             if (temperatureSeries[i] < minTemp) {
                 throw new InputMismatchException(
                         "Temperature cannot be less then -273.");
@@ -26,7 +26,7 @@ public class TemperatureSeries {
     }
 
     public boolean empty() {
-        return buffer==0;
+        return buffer == 0;
     }
 
     public void add(double x) {
@@ -37,7 +37,7 @@ public class TemperatureSeries {
         if (empty()) {
             buffer = 1;
             temperatures = new double[1];
-        }else{
+        } else {
             if (buffer == size) {
                 buffer = 2 * buffer;
                 double[] temps = temperatures;
