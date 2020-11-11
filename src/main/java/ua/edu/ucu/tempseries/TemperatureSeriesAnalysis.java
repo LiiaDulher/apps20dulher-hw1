@@ -23,7 +23,7 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException("Temperature series is empty");
         }
         double averageTemp = 0;
-        for (int i=0; i < temperatures.getSize(); i++){
+        for (int i=0; i < temperatures.getSize(); i++) {
             averageTemp += temperatures.getTemperature(i);
         }
         return averageTemp/temperatures.getSize();
@@ -38,12 +38,12 @@ public class TemperatureSeriesAnalysis {
         return sqrt(tempDeviation/temperatures.getSize());
     }
 
-    private double expected(int expected){
+    private double expected(int expected) {
         if (temperatures.empty()){
             throw new IllegalArgumentException("Temperature series is empty");
         }
         double temperature = temperatures.getTemperature(0);
-        for (int i=1; i < temperatures.getSize(); i++){
+        for (int i=1; i < temperatures.getSize(); i++) {
             if (compare(temperatures.getTemperature(i), temperature) == expected){
                 temperature = temperatures.getTemperature(i);
             }
@@ -51,7 +51,7 @@ public class TemperatureSeriesAnalysis {
         return temperature;
     }
 
-    private int compare(double x, double y){
+    private int compare(double x, double y) {
         if (x < y){
             return 1;
         }else if (x >y){
@@ -78,7 +78,7 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException("Temperature series is empty");
         }
         double currentTemp = temperatures.getTemperature(0);
-        for(int i=1; i<temperatures.getSize(); i++){
+        for(int i=1; i<temperatures.getSize(); i++) {
             double curDifference = abs(currentTemp-tempValue);
             double newDifference = abs(temperatures.getTemperature(i)-tempValue);
             if (abs(curDifference - newDifference) < 0.00001){
@@ -90,12 +90,12 @@ public class TemperatureSeriesAnalysis {
         return currentTemp;
     }
 
-    private double[] sortTempsByValue(double tempValue, int expected){
+    private double[] sortTempsByValue(double tempValue, int expected) {
         if (temperatures.empty()){
             throw new IllegalArgumentException("Temperature series is empty");
         }
         TemperatureSeries valueTemps = new TemperatureSeries(-273);
-        for (int i=0; i<temperatures.getSize(); i++){
+        for (int i=0; i<temperatures.getSize(); i++) {
             if (abs(temperatures.getTemperature(i)-tempValue) < 0.00001 && expected==-1){
                 valueTemps.add(temperatures.getTemperature(i));
             }else if (compare(temperatures.getTemperature(i), tempValue) == expected){
@@ -121,11 +121,10 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        for (int i=0; i<temps.length; i++){
+        for (int i=0; i<temps.length; i++) {
             try{
                 temperatures.add(temps[i]);
-            }catch(InputMismatchException ignored){
-            }
+            }catch(InputMismatchException ignored) {}
         }
         return temperatures.getSize();
     }

@@ -3,16 +3,16 @@ package ua.edu.ucu.tempseries;
 import  java.util.InputMismatchException;
 
 public class TemperatureSeries {
-    private double[] temperatures={};
+    private double[] temperatures = {};
     private int minTemp;
     private int buffer=0;
     private int size=0;
 
-    public TemperatureSeries(int minimal){
+    public TemperatureSeries(int minimal) {
         minTemp = minimal;
     }
 
-    public TemperatureSeries(double[] temperatureSeries, int minimal){
+    public TemperatureSeries(double[] temperatureSeries, int minimal) {
         minTemp = minimal;
         for (int i=0; i<temperatureSeries.length; i++){
             if (temperatureSeries[i] < minTemp){
@@ -24,11 +24,11 @@ public class TemperatureSeries {
         buffer = size;
     }
 
-    public boolean empty(){
+    public boolean empty() {
         return buffer==0;
     }
 
-    public void add(double x){
+    public void add(double x) {
         if (x < minTemp){
             throw new InputMismatchException("Temperature cannot be less then -273.");
         }
@@ -46,7 +46,7 @@ public class TemperatureSeries {
             }
         }
         temperatures[size] = x;
-        size ++;
+        size++;
     }
 
     public int getSize() {
