@@ -5,8 +5,8 @@ import  java.util.InputMismatchException;
 public class TemperatureSeries {
     private double[] temperatures = {};
     private int minTemp;
-    private int buffer=0;
-    private int size=0;
+    private int buffer = 0;
+    private int size = 0;
 
     public TemperatureSeries(int minimal) {
         minTemp = minimal;
@@ -14,8 +14,8 @@ public class TemperatureSeries {
 
     public TemperatureSeries(double[] temperatureSeries, int minimal) {
         minTemp = minimal;
-        for (int i=0; i<temperatureSeries.length; i++){
-            if (temperatureSeries[i] < minTemp){
+        for (int i = 0; i < temperatureSeries.length; i++){
+            if (temperatureSeries[i] < minTemp) {
                 throw new InputMismatchException(
                         "Temperature cannot be less then -273.");
             }
@@ -30,19 +30,19 @@ public class TemperatureSeries {
     }
 
     public void add(double x) {
-        if (x < minTemp){
+        if (x < minTemp) {
             throw new InputMismatchException(
                     "Temperature cannot be less then -273.");
         }
-        if (empty()){
+        if (empty()) {
             buffer = 1;
             temperatures = new double[1];
         }else{
-            if(buffer == size){
+            if (buffer == size) {
                 buffer = 2 * buffer;
                 double[] temps = temperatures;
                 temperatures = new double[buffer];
-                for (int i=0; i<size; i++){
+                for (int i = 0; i < size; i++) {
                     temperatures[i] = temps[i];
                 }
             }
