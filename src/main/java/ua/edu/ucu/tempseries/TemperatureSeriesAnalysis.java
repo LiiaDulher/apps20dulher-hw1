@@ -31,7 +31,8 @@ public class TemperatureSeriesAnalysis {
         double averageTemp = average();
         double tempDeviation = 0;
         for (int i=0; i < temperatures.getSize(); i++){
-            tempDeviation += Math.pow(temperatures.getTemperature(i)-averageTemp, 2);
+            double curTempDifference = temperatures.getTemperature(i)-averageTemp;
+            tempDeviation += curTempDifference*curTempDifference;
         }
         return Math.sqrt(tempDeviation/temperatures.getSize());
     }
