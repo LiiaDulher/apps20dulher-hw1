@@ -128,7 +128,9 @@ public class TemperatureSeriesAnalysis {
         for (int i = 0; i < temps.length; i++) {
             try {
                 temperatures.add(temps[i]);
-            } catch (InputMismatchException ignored) { }
+            } catch (InputMismatchException e) {
+               // System.out.println(e);
+            }
         }
         return temperatures.getSize();
     }
